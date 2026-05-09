@@ -67,5 +67,6 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            pkill -f 'java -jar' || true
-            nohup java -jar /home/ubuntu/app/*.jar > app.log 2>&1 &
+            sudo systemctl daemon-reload
+            sudo systemctl restart spring-app
+            sudo systemctl status spring-app --no-pager
